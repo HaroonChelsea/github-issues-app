@@ -1,23 +1,35 @@
-import logo from "./logo.svg";
+import React, { Suspense, lazy } from "react";
+import { Route, Switch } from "react-router-dom";
+import Nav from "./components/Nav/Nav";
+
+const Home = lazy(() => import("./containers/Home/Home"));
+const Details = lazy(() => import("./containers/Details/Details"));
 
 function App() {
   return (
-    <div className="bg-blue-400 text-center text-white font-bold text-xl">
-      <header className="App-header">
-        <img src={logo} className="h-20 w-20 mx-auto animate-spin" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Suspense
+      fallback={
+        <div className="flex h-screen">
+          <div className="m-auto">
+            <div className="lds-facebook">
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+        </div>
+      }
+    >
+      <Nav />
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route
+          exact
+          path="/:full/:name/issues/:totalIssues"
+          component={Details}
+        />
+      </Switch>
+    </Suspense>
   );
 }
 
