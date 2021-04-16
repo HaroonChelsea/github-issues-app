@@ -13,7 +13,7 @@ export default function Card(props) {
     <li className="col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200">
       <Link
         onClick={() => dispatch({ type: "LOL" })}
-        to={`/${full_name}/issues/${open_issues}`}
+        to={`/${full_name}/issues/`}
         className="flex-1 flex flex-col p-8"
       >
         <img

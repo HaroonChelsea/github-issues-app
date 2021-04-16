@@ -4,7 +4,14 @@ const repos = (state = initState, action) => {
     case "ADD_ISSUES":
       state = {
         ...state,
-        ["page_" + action.payload.pageNumber]: action.payload.res,
+        ["page_" + action.payload.pageNumber]: action.payload.resp,
+      };
+      return state;
+    case "ADD_SINGLE_ISSUE":
+      console.log(action.payload);
+      state = {
+        ...state,
+        ["issue_" + action.payload.number]: action.payload,
       };
       return state;
     case "CLEAR_ISSUES":

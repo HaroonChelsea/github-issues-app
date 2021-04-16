@@ -1,16 +1,39 @@
 import axios from "axios";
 
+export function fetchComments(org, repo, issue_number) {
+  return axios
+    .get(
+      `https://api.github.com/repos/${org}/${repo}/issues/${issue_number}/comments`
+    )
+    .then((res) => {
+      if (!res.data) {
+        throw new Error(res.data.message);
+      }
+      return res.data;
+    })
+    .catch((err) => Promise.reject(err));
+}
+export function fetchIssue(org, repo, issue_number) {
+  return axios
+    .get(`https://api.github.com/repos/${org}/${repo}/issues/${issue_number}`)
+    .then((res) => {
+      if (!res.data) {
+        throw new Error(res.data.message);
+      }
+      return res;
+    })
+    .catch((err) => Promise.reject(err));
+}
 export function fetchIssues(org, repo, page) {
   return axios
     .get(
       `https://api.github.com/repos/${org}/${repo}/issues?per_page=25&page=${page}`
     )
     .then((res) => {
-      console.log(res);
       if (!res.data) {
         throw new Error(res.data.message);
       }
-      return res.data;
+      return res;
     })
     .catch((err) => Promise.reject(err));
 }
@@ -25,5 +48,5 @@ export function fetchPopularRepos(language) {
       }
       return res.data.items;
     })
-    .catch((err) => console.log(err));
+    .catch((err) => Promise.reject(err));
 }
