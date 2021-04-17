@@ -1,5 +1,5 @@
 import React from "react";
-import Tabs from "../../components/Tabs/Tabs";
+import Tabs from "../Tabs/Tabs";
 import ReposList from "../../components/ReposList/ReposList";
 import { useSelector, useDispatch } from "react-redux";
 import { selectRepo } from "../../store/actions/repos";
