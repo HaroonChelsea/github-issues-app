@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from "react";
 import { Route, Switch } from "react-router-dom";
 import Nav from "./components/Nav/Nav";
+import NotFound from "./components/NotFound/NotFound";
 
 const Home = lazy(() => import("./containers/Home/Home"));
 const Issues = lazy(() => import("./containers/Issues/Issues"));
@@ -26,6 +27,9 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route exact path="/:full/:name/issues/" component={Issues} />
         <Route exact path="/:full/:name/issues/:number" component={Details} />
+        <Route path="*">
+          <NotFound />
+        </Route>
       </Switch>
     </Suspense>
   );
