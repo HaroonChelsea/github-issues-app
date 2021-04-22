@@ -40,7 +40,7 @@ export function fetchIssues(org, repo, page) {
 export function fetchPopularRepos(language) {
   return axios
     .get(
-      `http://api.github.com/search/repositories?q=stars:>1+language:${language}&sort=stars&order=desc&type=Repositories`
+      `https://api.github.com/search/repositories?q=stars:>1+language:${language}&sort=stars&order=desc&type=Repositories`
     )
     .then((res) => {
       if (!res.data.items) {
